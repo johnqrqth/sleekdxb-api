@@ -20,7 +20,7 @@ class PropertyController extends Controller
         return response()->json($properties, 200);
     }
 
-    public function add(Request $request)
+    public function store(Request $request)
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
@@ -35,7 +35,12 @@ class PropertyController extends Controller
 
         $property = Property::create($validated);
 
-        return response()->json(['message' => 'Property added successfully.', 'property' => $property], 201);
+        return response()->json($property, 201);
+    }
+
+    public function show(Project $project)
+    {
+        return response()->json($project);
     }
 
     /**
